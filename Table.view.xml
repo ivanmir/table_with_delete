@@ -1,0 +1,43 @@
+<mvc:View
+	controllerName="sap.m.sample.TableColumnWidth.Table"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<MessageStrip
+		text="Leave the most important column's width empty(or set it to auto) that it takes much space as it can."
+		type="Success"
+		class="sapUiSmallMargin"
+		showIcon="true"/>
+	<Table
+		id="tbl_products"
+		mode="MultiSelect"
+		items="{
+			path: 'products>/ProductCollection'
+		}"
+		columns="{
+			path: 'clone>/'
+		}"
+		delete="deleteHandler"
+		>
+		<headerToolbar>
+			<Toolbar>
+				<Title text="Products (Correct Usage)" level="H2"/>
+				<Button	icon="sap-icon://delete" press="deleteHandler" />
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="{clone>width}" styleClass="{clone>styleClass}" demandPopin="{clone>demandPopin}" minScreenWidth="{clone>minScreenWidth}" popinDisplay="WithoutHeader">
+				<Input value="{clone>width}" description="{clone>header}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" type="Navigation">
+				<cells>
+					<Text text="{products>Name}" wrapping="false" />
+					<Text text="{products>SupplierName}" wrapping="false"/>
+					<Text text="{products>Description}" wrapping="false" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>
